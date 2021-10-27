@@ -1,7 +1,7 @@
 site_name: Rucio interaction with ESCAPE Data Lake 
 site_url: https://rucio-escape-datalake.com/
 nav:
-    - Authentication: auth.md
+    - Authentication: index.md
     - Rucio CLI environment install: cli.md
     - Rucio RESTful APIs: api.md
 

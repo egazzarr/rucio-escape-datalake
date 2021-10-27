@@ -11,11 +11,6 @@
          <changefreq>daily</changefreq>
     </url>
     <url>
-         <loc>https://rucio-escape-datalake.com/auth/</loc>
-         <lastmod>2021-10-27</lastmod>
-         <changefreq>daily</changefreq>
-    </url>
-    <url>
          <loc>https://rucio-escape-datalake.com/cli/</loc>
          <lastmod>2021-10-27</lastmod>
          <changefreq>daily</changefreq>
