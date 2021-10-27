@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="canonical" href="https://rucio-escape-datalake.com/api/">
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>Rucio RESTful APIs - Rucio interaction with ESCAPE Data Lake</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
+
+  <link rel="stylesheet" href="../css/theme.css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "Rucio RESTful APIs";
+    var mkdocs_page_input_path = "api.md";
+    var mkdocs_page_url = "/api/";
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> Rucio interaction with ESCAPE Data Lake</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../auth/">Authentication</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../cli/">Rucio CLI environment install</a>
+                    </li>
+                </ul>
+                <ul class="current">
+                    <li class="toctree-l1 current"><a class="reference internal current" href="./">Rucio RESTful APIs</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#token-generation">Token generation</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#proxy-generation">Proxy generation</a>
+    </li>
+    </ul>
+                    </li>
+                </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">Rucio interaction with ESCAPE Data Lake</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>Rucio RESTful APIs</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  
+  <hr/>
+</div>
+
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="rucio-restful-apis">Rucio RESTful APIs</h1>
+<p>Interacting with the client environment can be done through the Docker container, or through the RestAPI. This is a way for developers to be able to integrate any kind of scripts into the environment without the need of installing all the Rucio CLI dependencies.</p>
+<h4 id="token-generation"><em>Token generation</em></h4>
+<p>Now that you have the VOMS in place, you will just need to add your token, which will expire and will be regenerated every hour, to your Rest API request. 
+To get the token, run the command:</p>
+<pre><code class="language-console">$ curl -i --key ~/.globus/userkey.pem --cert ~/.globus/usercert.pem -H &quot;X-Rucio-Account: &lt;myrucioaccount&gt;&quot; -X GET https://escape-rucio-auth.cern.ch/auth/x509 | sed -n -e 's/^.*X-Rucio-Auth-Token: //p'
+</code></pre>
+<p>The \&lt; myrucioaccount > instance needs to be replaced with your Rucio UI account name, the same as your IAM account (but you can also find it by navigating <a href="https://escape-rucio-webui.cern.ch/">here</a> and selecting the ‘Account management’ option under the Admin scroll-down menu). </p>
+<p><em>Note: Using curl with the --insecure option allows curl to make insecure connections (i.e. curl does not verify the certificate), bypassing: curl: (60) SSL certificate problem: self signed certificate in certificate chain. Another solution is proposed <a href="https://escape-rucio-webui.cern.ch/">here</a>.</em></p>
+<p>Create a variable by copying the token which has been generated and running in the command line:</p>
+<pre><code class="language-console">$ token=&quot;&lt;your_token&gt;&quot;
+</code></pre>
+<p>Do not forget the “ symbol. </p>
+<p>After the token has been saved, you can run any Rest Api command, for example listing all the available RSEs or all the scopes:</p>
+<pre><code class="language-console">$ curl -X GET -H &quot;X-Rucio-Auth-Token: $token&quot; https://escape-rucio.cern.ch/rses/
+$ curl -X GET -H &quot;X-Rucio-Auth-Token: $token&quot; https://escape-rucio.cern.ch/scopes/
+</code></pre>
+<h4 id="proxy-generation"><em>Proxy generation</em></h4>
+<p>The proxy generation with the x509 certificate works in the same way, the only difference is the command to get the toke: </p>
+<pre><code class="language-console">$ curl -i --key ~/.globus/userkey.pem --cert ~/.globus/usercert.pem -H &quot;X-Rucio-Account: &lt;myrucioaccount&gt;&quot; -X GET https://escape-rucio-auth.cern.ch/auth/x509_proxy | sed -n -e 's/^.*X-Rucio-Auth-Token: //p'
+</code></pre>
+<p>Again, using curl with the --insecure option might be useful. Follow the same steps as above to make Rest API requests. </p>
+<p>To find all the Rucio REST API commands, navigate <a href="https://rucio.readthedocs.io/en/latest/rest.html">here</a>.</p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="../cli/" class="btn btn-neutral" title="Rucio CLI environment install"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../cli/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>
