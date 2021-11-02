@@ -1,6 +1,6 @@
 # Authentication
 
-The interaction with the [Data Lake](https://gitlab.cern.ch/escape-wp2/datalake-as-a-service-docs/-/tree/master/base) requires authentication.
+ interaction with the [Data Lake](https://gitlab.cern.ch/escape-wp2/datalake-as-a-service-docs/-/tree/master/base) requires authentication.
 It is required to register to the INDIGO Identity and Access Management ([IAM](https://indigo-iam.github.io/v/v1.7.1/docs/overview/)) service and obtain a X.509 Grid certificate. Follow the instructions in the next sections.
 
 ### ESCAPE IAM registration
