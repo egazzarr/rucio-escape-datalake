@@ -1,0 +1,212 @@
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  
+  <link rel="canonical" href="https://rucio-escape-datalake.com/dlaas/">
+  <link rel="shortcut icon" href="../img/favicon.ico">
+  <title>DataLake-as-a-Service for Open Science - Rucio interaction with the Data Lake and DLaaS for Open Science</title>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
+
+  <link rel="stylesheet" href="../css/theme.css" />
+  <link rel="stylesheet" href="../css/theme_extra.css" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/styles/github.min.css" />
+  
+  <script>
+    // Current page data
+    var mkdocs_page_name = "DataLake-as-a-Service for Open Science";
+    var mkdocs_page_input_path = "dlaas.md";
+    var mkdocs_page_url = "/dlaas/";
+  </script>
+  
+  <script src="../js/jquery-2.1.1.min.js" defer></script>
+  <script src="../js/modernizr-2.8.3.min.js" defer></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/highlight.js/10.5.0/highlight.min.js"></script>
+  <script>hljs.initHighlightingOnLoad();</script> 
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
+    <div class="wy-side-scroll">
+      <div class="wy-side-nav-search">
+        <a href=".." class="icon icon-home"> Rucio interaction with the Data Lake and DLaaS for Open Science</a>
+        <div role="search">
+  <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
+      <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
+  </form>
+</div>
+      </div>
+
+      <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="..">Authentication</a>
+                    </li>
+                </ul>
+                <ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../rucio_cli/">Interacting with Rucio CLI</a>
+                    </li>
+                </ul>
+                <ul class="current">
+                    <li class="toctree-l1 current"><a class="reference internal current" href="./">DataLake-as-a-Service for Open Science</a>
+    <ul class="current">
+    <li class="toctree-l2"><a class="reference internal" href="#authentication">Authentication</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#server-options">Server Options</a>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#service-usage">Service Usage</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#1-file-browser">1. File Browser:</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#2-running-terminals-and-kernels">2. Running Terminals and Kernels</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#3-table-of-contents">3. Table of Contents</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#4-rucio-extension">4. Rucio extension</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#5-extension-manager">5. Extension manager</a>
+    </li>
+        </ul>
+    </li>
+    </ul>
+                    </li>
+                </ul>
+      </div>
+    </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="..">Rucio interaction with the Data Lake and DLaaS for Open Science</a>
+      </nav>
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          <div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="..">Docs</a> &raquo;</li>
+    
+      
+    
+    <li>DataLake-as-a-Service for Open Science</li>
+    <li class="wy-breadcrumbs-aside">
+      
+    </li>
+  </ul>
+  
+  <hr/>
+</div>
+
+          <div role="main">
+            <div class="section">
+              
+                <h1 id="datalake-as-a-service-for-open-science">DataLake-as-a-Service for Open Science</h1>
+<p>This service provides the end-user with a Notebook ready-to-be-used and fully integrated with the ESCAPE Data Lake. The service is hosted in <a href="https://escape-notebook.cern.ch/">https://escape-notebook.cern.ch/</a>.</p>
+<h2 id="authentication">Authentication</h2>
+<p>Authenticate to IAM. Once you log into the service for the first time, everything will be configured for the OpenID connect by default. You will be able to modify it later and make it persistent.
+If you don't have an IAM account already, see the <a href="..">authentication</a> section.</p>
+<h2 id="server-options">Server Options</h2>
+<p>Select your server option based on your requirements:</p>
+<ul>
+<li>Minimal environment: Based on jupyter/scipy-notebook.</li>
+<li>ROOT environment: If you need to use PyROOT.</li>
+<li>ROOT environment (Xcache testing): Run the extension in Download mode.</li>
+</ul>
+<h2 id="service-usage">Service Usage</h2>
+<p>Once you are inside the service, you will find 5 panels in the left part menu.</p>
+<h5 id="1-file-browser">1. File Browser:</h5>
+<p>It enables you to work with the files and directories on your sistem. You can find more information in the <a href="https://jupyterlab.readthedocs.io/en/stable/user/files.html">Jupyerlab documentation</a>.</p>
+<p>In case you want to upload a file you will need to use this pannel, right click on the file and select "Upload File(s) to Rucio". Fill in the form and note that the upload may fail if the destination RSE does not support your authentication method.</p>
+<h5 id="2-running-terminals-and-kernels">2. Running Terminals and Kernels</h5>
+<p>The Running panel in the left sidebar shows a list of all the kernels and terminals currently running across all notebooks, code consoles, and directories. Find more information in the <a href="https://jupyterlab.readthedocs.io/en/stable/user/running.html">Jupyerlab documentation</a>.</p>
+<h5 id="3-table-of-contents">3. Table of Contents</h5>
+<p>This makes it easy to see and navigate the structure of a document. A table of contents is auto-generated in the left sidebar when you have a notebook, markdown, latex or python files opened. The entries are clickable, and scroll the document to the heading in question. Find more information in the <a href="https://jupyterlab.readthedocs.io/en/stable/user/toc.html">Jupyerlab documentation</a>.</p>
+<h5 id="4-rucio-extension">4. Rucio extension</h5>
+<ul>
+<li>
+<p><strong>EXPLORE</strong>:
+This is where you will interact with the DataLake and see all the files (Files, datasets and containers). If you want to use a specific data set, you will need to make it available and add it to your notebook. To do so, click on the folder button to see all the available scopes, select the one that stores your data and complete the search with the absolute DID. The DID syntax has some search flexibility:</p>
+<ul>
+<li>If you want to see all the files that are inside a specific scope your sintaxis will be <code>SCOPE:*</code> (Example: <code>ATLAS_OD_EDU:*</code>).</li>
+<li>In case you want to see all the files that starts with a specific term in a specific scope your sintaxis will be <code>SCOPE:TERM*</code> (Example: <code>ATLAS_OD_EDU:data*</code>).</li>
+<li>Finally if you want to see a specific file type the complete DID: <code>SCOPE:NAME</code> (Example: <code>ATLAS_OD_EDU:data_B.GamGam.root</code>).</li>
+</ul>
+<p>In case you want to know if there is a replication attached to that file, you need to click on the Availability button and see the rucio web UI. This availability button has some difererent states: Available, Not Available, Collection is empty, Something went wrong... If the state is Not Available you will need to make it Available. Once done you can add it to your notebook.</p>
+</li>
+<li>
+<p><strong>NOTEBOOK</strong>:
+    Here you will be able to see all the files you added to the notebook and are ready to be used.</p>
+</li>
+<li>
+<p><strong>CONFIGURATION</strong>:
+    There are multiple authentication methods, OpenID connect will be selected by default. Change the authentication method in case you want to use another one. You can select one of the following:
+        - OpenID Connect
+        - X.509 User Certificate
+        - X.509 Proxy Certificate
+        - Username &amp; Password</p>
+</li>
+</ul>
+<h5 id="5-extension-manager">5. Extension manager</h5>
+<p>You can use this panel in case you want to manage your extensions. This is an option you will mostly not need.</p>
+              
+            </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="../rucio_cli/" class="btn btn-neutral" title="Interacting with Rucio CLI"><span class="icon icon-circle-arrow-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <!-- Copyright etc -->
+    
+  </div>
+
+  Built with <a href="https://www.mkdocs.org/">MkDocs</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>.
+</footer>
+      
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+
+  <div class="rst-versions" role="note" aria-label="versions">
+  <span class="rst-current-version" data-toggle="rst-current-version">
+    
+    
+      <span><a href="../rucio_cli/" style="color: #fcfcfc">&laquo; Previous</a></span>
+    
+    
+  </span>
+</div>
+    <script>var base_url = '..';</script>
+    <script src="../js/theme_extra.js" defer></script>
+    <script src="../js/theme.js" defer></script>
+      <script src="../search/main.js" defer></script>
+    <script defer>
+        window.onload = function () {
+            SphinxRtdTheme.Navigation.enable(true);
+        };
+    </script>
+
+</body>
+</html>

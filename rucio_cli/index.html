@@ -7,9 +7,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   
-  <link rel="canonical" href="https://rucio-escape-datalake.com/cli/">
+  <link rel="canonical" href="https://rucio-escape-datalake.com/rucio_cli/">
   <link rel="shortcut icon" href="../img/favicon.ico">
-  <title>Rucio CLI environment install - Rucio interaction with ESCAPE Data Lake</title>
+  <title>Interacting with Rucio CLI - Rucio interaction with the Data Lake and DLaaS for Open Science</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
 
   <link rel="stylesheet" href="../css/theme.css" />
@@ -18,9 +18,9 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "Rucio CLI environment install";
-    var mkdocs_page_input_path = "cli.md";
-    var mkdocs_page_url = "/cli/";
+    var mkdocs_page_name = "Interacting with Rucio CLI";
+    var mkdocs_page_input_path = "rucio_cli.md";
+    var mkdocs_page_url = "/rucio_cli/";
   </script>
   
   <script src="../js/jquery-2.1.1.min.js" defer></script>
@@ -37,7 +37,7 @@
     <nav data-toggle="wy-nav-shift" class="wy-nav-side stickynav">
     <div class="wy-side-scroll">
       <div class="wy-side-nav-search">
-        <a href=".." class="icon icon-home"> Rucio interaction with ESCAPE Data Lake</a>
+        <a href=".." class="icon icon-home"> Rucio interaction with the Data Lake and DLaaS for Open Science</a>
         <div role="search">
   <form id ="rtd-search-form" class="wy-form" action="../search.html" method="get">
       <input type="text" name="q" placeholder="Search docs" title="Type search term here" />
@@ -51,25 +51,37 @@
                     </li>
                 </ul>
                 <ul class="current">
-                    <li class="toctree-l1 current"><a class="reference internal current" href="./">Rucio CLI environment install</a>
+                    <li class="toctree-l1 current"><a class="reference internal current" href="./">Interacting with Rucio CLI</a>
     <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#docker-installation">Docker installation</a>
+    <li class="toctree-l2"><a class="reference internal" href="#installing-the-rucio-client-environment">Installing the Rucio Client Environment</a>
         <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#as-root">As root</a>
+    <li class="toctree-l3"><a class="reference internal" href="#docker-installation">Docker installation</a>
+        <ul>
+    <li class="toctree-l4"><a class="reference internal" href="#as-root">As root</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#as-user-no-root-permissions">As user - no root permissions</a>
+    <li class="toctree-l4"><a class="reference internal" href="#as-user-no-root-permissions">As user - no root permissions</a>
     </li>
         </ul>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#singularity-installation">Singularity installation</a>
+    <li class="toctree-l3"><a class="reference internal" href="#singularity-installation">Singularity installation</a>
     </li>
-    <li class="toctree-l2"><a class="reference internal" href="#manual-installation">Manual installation</a>
+    <li class="toctree-l3"><a class="reference internal" href="#manual-installation">Manual installation</a>
         <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#certificates">Certificates</a>
+    <li class="toctree-l4"><a class="reference internal" href="#certificates">Certificates</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#setting-up-voms-environment">Setting up VOMS environment</a>
+    <li class="toctree-l4"><a class="reference internal" href="#setting-up-voms-environment">Setting up VOMS environment</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#rucio-cli">Rucio CLI</a>
+    <li class="toctree-l4"><a class="reference internal" href="#rucio-cli">Rucio CLI</a>
+    </li>
+        </ul>
+    </li>
+        </ul>
+    </li>
+    <li class="toctree-l2"><a class="reference internal" href="#rucio-restful-apis">Rucio RESTful APIs</a>
+        <ul>
+    <li class="toctree-l3"><a class="reference internal" href="#token-generation">Token generation</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#proxy-generation">Proxy generation</a>
     </li>
         </ul>
     </li>
@@ -77,7 +89,7 @@
                     </li>
                 </ul>
                 <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../api/">Rucio RESTful APIs</a>
+                    <li class="toctree-l1"><a class="reference internal" href="../dlaas/">DataLake-as-a-Service for Open Science</a>
                     </li>
                 </ul>
       </div>
@@ -89,7 +101,7 @@
       
       <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
         <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
-        <a href="..">Rucio interaction with ESCAPE Data Lake</a>
+        <a href="..">Rucio interaction with the Data Lake and DLaaS for Open Science</a>
       </nav>
 
       
@@ -101,7 +113,7 @@
     
       
     
-    <li>Rucio CLI environment install</li>
+    <li>Interacting with Rucio CLI</li>
     <li class="wy-breadcrumbs-aside">
       
     </li>
@@ -113,7 +125,8 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="installing-the-rucio-client-environment">Installing the Rucio Client Environment</h1>
+                <h1 id="interacting-with-rucio-cli">Interacting with Rucio CLI</h1>
+<h2 id="installing-the-rucio-client-environment">Installing the Rucio Client Environment</h2>
 <p>This guide takes a look at how to install the Rucio client environment in three different ways: using Docker, using Singularity, or manually by downloading rucio on your machine. 
 Docker and Singularity mitigate dependency and platform specific issues, and are therefore recommended methods. </p>
 <h3 id="docker-installation">Docker installation</h3>
@@ -219,6 +232,29 @@ lfn2pfn_algorithm_default = hash
 support = https://github.com/rucio/rucio/issues/
 support_rucio = https://github.com/rucio/rucio/issues/
 </code></pre>
+<h2 id="rucio-restful-apis">Rucio RESTful APIs</h2>
+<p>Interacting with the client environment can be done through the Docker container, or through the RestAPI. This is a way for developers to be able to integrate any kind of scripts into the environment without the need of installing all the Rucio CLI dependencies.</p>
+<h4 id="token-generation"><em>Token generation</em></h4>
+<p>Now that you have the VOMS in place, you will just need to add your token, which will expire and will be regenerated every hour, to your Rest API request. 
+To get the token, run the command:</p>
+<pre><code class="language-console">$ curl -i --key ~/.globus/userkey.pem --cert ~/.globus/usercert.pem -H &quot;X-Rucio-Account: &lt;myrucioaccount&gt;&quot; -X GET https://escape-rucio-auth.cern.ch/auth/x509 | sed -n -e 's/^.*X-Rucio-Auth-Token: //p'
+</code></pre>
+<p>The \&lt; myrucioaccount > instance needs to be replaced with your Rucio UI account name, the same as your IAM account (but you can also find it by navigating <a href="https://escape-rucio-webui.cern.ch/">here</a> and selecting the ‘Account management’ option under the Admin scroll-down menu). </p>
+<p><em>Note: Using curl with the --insecure option allows curl to make insecure connections (i.e. curl does not verify the certificate), bypassing: curl: (60) SSL certificate problem: self signed certificate in certificate chain. Another solution is proposed <a href="https://escape-rucio-webui.cern.ch/">here</a>.</em></p>
+<p>Create a variable by copying the token which has been generated and running in the command line:</p>
+<pre><code class="language-console">$ token=&quot;&lt;your_token&gt;&quot;
+</code></pre>
+<p>Do not forget the “ symbol. </p>
+<p>After the token has been saved, you can run any Rest Api command, for example listing all the available RSEs or all the scopes:</p>
+<pre><code class="language-console">$ curl -X GET -H &quot;X-Rucio-Auth-Token: $token&quot; https://escape-rucio.cern.ch/rses/
+$ curl -X GET -H &quot;X-Rucio-Auth-Token: $token&quot; https://escape-rucio.cern.ch/scopes/
+</code></pre>
+<h4 id="proxy-generation"><em>Proxy generation</em></h4>
+<p>The proxy generation with the x509 certificate works in the same way, the only difference is the command to get the toke: </p>
+<pre><code class="language-console">$ curl -i --key ~/.globus/userkey.pem --cert ~/.globus/usercert.pem -H &quot;X-Rucio-Account: &lt;myrucioaccount&gt;&quot; -X GET https://escape-rucio-auth.cern.ch/auth/x509_proxy | sed -n -e 's/^.*X-Rucio-Auth-Token: //p'
+</code></pre>
+<p>Again, using curl with the --insecure option might be useful. Follow the same steps as above to make Rest API requests. </p>
+<p>To find all the Rucio REST API commands, navigate <a href="https://rucio.readthedocs.io/en/latest/rest.html">here</a>.</p>
               
             </div>
           </div>
@@ -226,7 +262,7 @@ support_rucio = https://github.com/rucio/rucio/issues/
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="../api/" class="btn btn-neutral float-right" title="Rucio RESTful APIs">Next <span class="icon icon-circle-arrow-right"></span></a>
+        <a href="../dlaas/" class="btn btn-neutral float-right" title="DataLake-as-a-Service for Open Science">Next <span class="icon icon-circle-arrow-right"></span></a>
       
       
         <a href=".." class="btn btn-neutral" title="Authentication"><span class="icon icon-circle-arrow-left"></span> Previous</a>
@@ -258,7 +294,7 @@ support_rucio = https://github.com/rucio/rucio/issues/
       <span><a href=".." style="color: #fcfcfc">&laquo; Previous</a></span>
     
     
-      <span><a href="../api/" style="color: #fcfcfc">Next &raquo;</a></span>
+      <span><a href="../dlaas/" style="color: #fcfcfc">Next &raquo;</a></span>
     
   </span>
 </div>
